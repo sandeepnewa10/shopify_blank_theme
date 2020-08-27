@@ -1,0 +1,124 @@
+.featured-collection{
+
+}
+
+/**** Feature Collection *******/
+.featured-collection{
+    .featured-collection-item{
+        margin-bottom: 30px;
+        overflow: hidden;
+        display: block;
+
+         .responsive-image__wrapper{
+            overflow: hidden;
+            margin-bottom: 20px;
+            img.img-fluid{
+                max-width: 100%;
+            }
+        }
+        .feature-collection-disc{
+            text-align: center;
+            h2{
+                font-size:16px;
+            }
+            span{
+                text-align: center;
+                font-size: 14px;
+            }
+        }
+        
+    }
+}
+
+/**** Feature Blog *******/
+.blog-wrap{
+    .blog-post{
+        .blog-post__item{
+            overflow: hidden;
+            clear: both;
+            margin-bottom: 30px;
+            .responsive-image__wrapper{
+                float: left;
+                margin-right: 30px;
+            }
+            .blog-post__disc{
+                //margin-left: 30px;
+                ul.blog_tag{
+                    list-style: none;
+                    display: table;
+                    padding-left: 0;
+                    li{
+                        float: left;
+                        margin-right: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.section-heading{
+    text-align: center;
+    margin-bottom: 50px;;
+}
+.header{
+    margin-bottom: 0;;
+}
+section{
+    margin-bottom:50px;
+    overflow: hidden;
+    clear: both;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+.widget-title{
+    text-align: center;
+    padding: 16px 0 25px;
+    overflow: hidden;
+    margin-bottom: 13px;
+    
+    h3{
+        font-weight: 600;
+        text-transform: uppercase;
+        line-height: 20px;
+        font-size: 20px;
+        color: #191919;
+        //font-family: Poppins;
+        letter-spacing: .1em;
+        display: inline;
+        position: relative;
+        &::before,
+        &::after{
+            content: "";
+            position: absolute;
+            height: 1px;
+            background-color: #c7c7c7;
+            top: 50%;
+            width: 600px;
+            -moz-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+        &::before{
+            right: 100%;
+            margin-right: 135px;
+
+        }
+        &::after{
+            left: 100%;
+            margin-left: 135px;
+        }
+    }
+    .desc-text{
+        font-size: 12px;
+        font-weight: 400;
+        color: #5a5a5a;
+        //font-family: Poppins;
+        border-bottom: 1px solid transparent;
+        display: inline-block;
+        width: 100%;
+    }
+}

@@ -1,0 +1,38 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the footer of the site/application.
+// -----------------------------------------------------------------------------
+
+#footer-wrap{
+    color: #fff;
+    background: #1d2536;
+    .footer-top{
+        padding: 40px 0;
+        ul.social_footer_link{
+            list-style: none;
+            li{
+                float: left;
+                margin-right: 15px;;
+                a{
+                    color: #fff;
+                    svg{ 
+                        color:#fff;
+                    }
+                    .icon-fallback-text{
+                        text-indent: -99999px;
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    .footer-bottom{
+        padding:30px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.075);
+        p{
+            color: #fff;
+            a{
+                color:#fff;
+            }
+        }
+    }
+}

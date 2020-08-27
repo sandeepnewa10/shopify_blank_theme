@@ -1,0 +1,61 @@
+<!-- This file has been calledl in navbar.liquid -->
+<ul class="list-unstyled">
+  <template v-if="cart">
+      <li class="media" v-for="(item, index) in cart.items">
+          <template v-if="item.image">
+              <a :href="item.url">
+                <img class="img-fluid mr-4 mb-2" width="150" :src="item.image" alt="">
+              </a>
+          </template>
+          <div class="media-body">
+
+              <h5 class="title"><a :href="item.url">${ item.product_title }</a></h5>
+      
+              <template v-if="!item.product_has_only_default_variant">
+                <p>${ item.variant_title }</p>
+              </template>
+          
+              <div class="price">
+                <template v-if="item.original_line_price != item.line_price">
+    
+                  <span class="visually-hidden">{{ 'cart.label.discounted_price' | t }}</span>
+                    ${ item.price }
+                  <span class="visually-hidden">{{ 'cart.label.original_price' | t }}</span>
+                  <s>${ item.original_price }</s>
+
+                </template>
+
+                <template v-else>
+                      ${item.price | money }
+                </template>
+              </div>
+
+              <div class="input-group quantity mt-3">
+
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" @click="decrement(item)">-</span>
+                  </div>
+
+                  <input type="text" v-model="item.quantity" class="form-control w-25" aria-label="Product quantity">
+
+                  <div class="input-group-append">
+                    <span class="input-group-text" @click="increment(item)">+</span>
+                  </div>
+
+              </div>
+
+          </div>
+      </li>
+
+  </template>
+
+    
+    <li class="media my-4">
+        <div class="d-flex justify-content-between">
+          <a href="/cart" class="btn btn-primary mr-3">Cart</a>
+          <a href="/checkout" class="btn btn-success">Checkout</a>
+        </div>
+    </li>
+    
+    
+</ul>
