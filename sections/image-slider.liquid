@@ -22,6 +22,7 @@
                             <img src="{{ block.settings.image | img_url:'master' }}" class="d-block w-100" alt="...">
                             <div class="carousel-caption d-none d-md-block">
                               <h5> {{ block.settings.title }} </h5>
+                              <p> {{ block.settings.textdesc }} </p>
 
                             </div>
                         </div>
@@ -78,7 +79,14 @@
           {
             "type": "text",
             "id": "title",
-            "label": "Image title"
+            "label": "Image title",
+            "default": "<h5>Add Image Title</h5>"
+          },
+          {
+            "id": "textdesc",
+            "type": "richtext",
+            "label": "Add custom text below",
+            "default": "<p>Add your text here</p>"
           }
         ]
       }
