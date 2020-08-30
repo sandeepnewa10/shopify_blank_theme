@@ -9,13 +9,17 @@
   - Heading: title of the featured collection section
 {%- endcomment -%}
 <section class="featured-collection">
+  <div class="container">
   {% if section.settings.title != blank %}
+  <div class="section-title">
     <h2 class="featured-collection__title">{{ section.settings.title | escape }}</h2>
+  </div>
   {% endif %}
 
   {%- assign collection = collections[section.settings.collection] -%}
-
-  {% for product in collection.products limit: 6 %}
+<div class="row">
+  {% for product in collection.products limit: 8 %}
+  <div class="col-lg-3 col-md-3 col-sm-6">
     <a href="{{ product.url | within: collection }}" class="featured-collection-item">
       {% if product.featured_image != blank %}
         <div class="featured-collection__image">
@@ -28,6 +32,7 @@
       {% endif %}
 
       <p>{{ product.title | escape }}</p>
+      
       <span>
         {% if product.compare_at_price > product.price %}
           {% if product.price_varies %}
@@ -46,18 +51,33 @@
           {% endif %}
         {% endif %}
       </span>
-    </a>
+      <!-- <form action="/cart/add" method="post">
+        {% if product.variants.size == 1 %}
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+        {% else %}
+        <select name="id">{% for variant in product.variants %}<option value="{{ variant.id }}">{{ variant.title }}</option>{% endfor %}</select>
+        {% endif %}
+        <div><button type="submit" name="add">Add to cart</button></div>  
+        </form> -->
+
+       
+    </a></div>
   {% else %}
     {% for i in (1..6) %}
+    <div class="colsat">
       <a href="#" class="featured-collection-item">
-        {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+        {% capture current %}{% cycle 1, 2, 3, 4, 5, 6, 7, 8 %}{% endcapture %}
         {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
 
         <p>{{ 'homepage.onboarding.product_title' | t }}</p>
         <p>{{ 1999 | money }}</p>
+        
       </a>
+    </div>
     {% endfor %}
+  </div>
   {% endfor %}
+</div>
 </section>
 
 {% schema %}

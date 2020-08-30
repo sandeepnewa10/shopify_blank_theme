@@ -6,7 +6,7 @@
 
         <header role="banner" 
                 class="d-flex align-items-center" 
-                style="min-height: {{section.settings.header_height}}px;">
+                style="min-height: {{section.settings.header_height}}px; ">
             <div class="w-100">
               <h1 class="text-{{section.settings.header_align}}">{{ collection.title }}</h1>
               {% if collection.description != blank %}
@@ -18,7 +18,7 @@
         </header>
       
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 {% if section.settings.collection_nav %}
 
                   {% assign sidebarNav = section.settings.collection_nav %}

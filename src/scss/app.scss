@@ -10,10 +10,16 @@
   'abstracts/mixins';
 
 // 2. Vendors
-@import
-  'vendors/normalize',
-  '~bootstrap/scss/bootstrap',
-  '~owl.carousel/dist/assets/owl.carousel.css';
+// @import
+//   'vendors/normalize',
+//   '~bootstrap/scss/functions',
+//   '~bootstrap/scss/variables';
+
+@import '~bootstrap/scss/bootstrap',
+        'vendors/quickview';
+
+  //'~bootstrap/scss/bootstrap',
+  // '~owl.carousel/dist/assets/owl.carousel.css';
 
 // 3. Base stuff
 // @import
