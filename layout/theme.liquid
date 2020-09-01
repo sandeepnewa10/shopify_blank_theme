@@ -69,12 +69,10 @@
 
   {% section 'footer' %}
 
+  {{ 'jquery-1.9.1.min.js' | asset_url | script_tag }}
   {{ 'app.js' | asset_url | script_tag }}
-  {{ 'quickview.js' | asset_url | script_tag }}
-  
-{{ 'https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css' | stylesheet_tag }}
-{{ '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js' | script_tag }}
-{{ 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js' | script_tag }
+  {{ 'init.js' | asset_url | script_tag }}
+
 
 
 </body>

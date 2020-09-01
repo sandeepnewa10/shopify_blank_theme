@@ -16,15 +16,17 @@
   {% for block in section.blocks %}
     {%- assign collection = collections[block.settings.collection] -%}
 <div class="col-lg-4 col-md-4 col-sm-12">
-    <a href="{{ collection.url | default: "#" }}" class="collection-list-item" {{ block.shopify_attributes }}>
+  <div class="thumb-wrap">
+   
       {% if collection.image != blank or collection.products.first != blank %}
         {%- assign image_object = collection.image | default: collection.products.first.featured_image -%}
-        <div class="collection-list__image">
+        <div class="collection-list__image"><figure><a href="{{ collection.url | default: "#" }}" class="collection-list-item" {{ block.shopify_attributes }}>
           {% include 'responsive-image' with
             image: image_object,
             max_width: 680,
             max_height: 680
-          %}
+          %}</a>
+        </figure>
         </div>
       {% elsif collection == empty %}
         {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
@@ -32,8 +34,17 @@
       {% endif %}
 
       {%- assign default_label = 'homepage.onboarding.collection_title' | t -%}
-      <p>{{ collection.title | default: default_label }}</p>
-    </a>
+      
+      
+  
+    <div class="figure-caption">
+      
+        <h3> <a href="{{ collection.url | default: "#" }}" class="collection-list-item" {{ block.shopify_attributes }}>
+          {{ collection.title | default: default_label }}</a></h3>
+      
+      
+    </div>
+  </div>
   </div>
   {% endfor %}
 

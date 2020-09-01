@@ -19,49 +19,46 @@
   {%- assign collection = collections[section.settings.collection] -%}
 <div class="row">
   {% for product in collection.products limit: 8 %}
-  <div class="col-lg-3 col-md-3 col-sm-6">
-    <a href="{{ product.url | within: collection }}" class="featured-collection-item">
-      {% if product.featured_image != blank %}
-        <div class="featured-collection__image">
-          {% include 'responsive-image' with
-            image: product.featured_image,
-            max_width: 480,
-            max_height: 480
-          %}
-        </div>
-      {% endif %}
+  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+    <div class="product-item">
+      <div class="product-item-image">
 
-      <p>{{ product.title | escape }}</p>
-      
-      <span>
-        {% if product.compare_at_price > product.price %}
-          {% if product.price_varies %}
-            {%- assign sale_price = product.price | money -%}
-            {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
-          {% else %}
-            {{ 'products.product.on_sale' | t }}
-            {{ product.price | money }}
+        <a href="{{ product.url | within: collection }}" class="featured-collection-item">
+          {% if product.featured_image != blank %}
+            <div class="featured-collection__image">
+              {% include 'responsive-image' with
+                image: product.featured_image,
+                max_width: 480,
+                max_height: 480
+              %}
+            </div>
           {% endif %}
-        {% else %}
-          {% if product.price_varies %}
-            {%- assign price = product.price | money -%}
-            {{ 'products.product.from_text_html' | t: price: price }}
-          {% else %}
-            {{ product.price | money }}
-          {% endif %}
-        {% endif %}
-      </span>
-      <!-- <form action="/cart/add" method="post">
-        {% if product.variants.size == 1 %}
-        <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-        {% else %}
-        <select name="id">{% for variant in product.variants %}<option value="{{ variant.id }}">{{ variant.title }}</option>{% endfor %}</select>
-        {% endif %}
-        <div><button type="submit" name="add">Add to cart</button></div>  
-        </form> -->
+</a>    
 
-       
-    </a></div>
+      </div>
+      <div class="product-item-dsc">
+        <h4 class="product-title"><a href="{{ product.url | within: collection }}" class="featured-collection-item"> {{product.title | escape }}</a> </h4>
+        <span>
+          {% if product.compare_at_price > product.price %}
+            {% if product.price_varies %}
+              {%- assign sale_price = product.price | money -%}
+              {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+            {% else %}
+              {{ 'products.product.on_sale' | t }}
+              {{ product.price | money }}
+            {% endif %}
+          {% else %}
+            {% if product.price_varies %}
+              {%- assign price = product.price | money -%}
+              {{ 'products.product.from_text_html' | t: price: price }}
+            {% else %}
+              {{ product.price | money }}
+            {% endif %}
+          {% endif %}
+        </span>
+      </div>
+    </div>   
+      </div>
   {% else %}
     {% for i in (1..6) %}
     <div class="colsat">

@@ -11,9 +11,12 @@
   - Show author
   - Show date
 {%- endcomment -%}
-<section>
+<section class="featured-blog">
+  <div class="container">
   {% if section.settings.title != blank %}
+  <div class="section-title">
     <h2>{{ section.settings.title | escape }}</h2>
+    </div>
   {% endif %}
 
   {%- assign blog = blogs[section.settings.blog] -%}
@@ -23,14 +26,16 @@
     as a list of content items. Non-visual users will expect lists of content
     to appear in a list structure, allowing for easier understanding and navigation of list items.
   {%- endcomment -%}
-  <ul class="blog-post">
+  <div class="owl-carousel owl-theme blog-post">
     {% for article in blog.articles limit: section.settings.post_limit %}
-      <li class="blog-post__item">
+    <div class="item">
+      <article class="blog-post__item">
         {%- comment -%}
           Due to accessibility requirements, we are regrouping all logical elements into the <a> element.
           If a screen reader user is tabbing through the page, or browsing by links on the page with duplicated links,
           they will appear identical which may lead to a confusing user experience.
         {%- endcomment -%}
+        <figure>
         <a href="{{ article.url }}">
           {% if article.image %}
             {% include 'responsive-image' with
@@ -39,47 +44,46 @@
                 max_height: 400
             %}
           {% endif %}
-          <h3>{{ article.title }}</h3>
         </a>
-
-        <div>
-          {% if section.settings.blog_show_author %}
-            <span>{{ 'blogs.article.by_author' | t: author: article.author }}</span>
-          {% endif %}
+        </figure>
+        <div class="blog-post__inner">
+          {% if article.tags.size > 0 %}
+          {%- comment -%}
+            The Tag link list functions as a list of content items.
+            Non-visual users will expect lists of content to appear
+            in a list structure, allowing for easier understanding and navigation of list items.
+          {%- endcomment -%}
+          <ul class="blog-post__tag" aria-label="{{ 'blogs.article.tags' | t }}">
+            {% for tag in article.tags %}
+              <li><a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endif %}
 
           {% if section.settings.blog_show_date %}
-            <p>
-              {{ article.published_at | time_tag: format: 'month_day_year' }}
-            </p>
-          {% endif %}
+          <span class="date">
+            {{ article.published_at | time_tag: format: 'month_day_year' }}
+          </span>
+        {% endif %}
 
-          <div>
+        {% if section.settings.blog_show_author %}
+        <span>{{ 'blogs.article.by_author' | t: author: article.author }}</span>
+      {% endif %}
+          <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+          <p>
             {% if article.excerpt.size > 0 %}
               {{ article.excerpt }}
             {% else %}
               {{ article.content | strip_html | truncate: 150 }}
             {% endif %}
-          </div>
-
-          {% if article.tags.size > 0 %}
-            {%- comment -%}
-              The Tag link list functions as a list of content items.
-              Non-visual users will expect lists of content to appear
-              in a list structure, allowing for easier understanding and navigation of list items.
-            {%- endcomment -%}
-            <ul aria-label="{{ 'blogs.article.tags' | t }}">
-              {% for tag in article.tags %}
-                <li><a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a></li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-
-          <a href="{{ article.url }}" aria-label="{{ 'blogs.article.read_more_title' | t: title: article.title }}">{{ 'blogs.article.read_more' | t }}</a>
-        </div>
-      </li>
+          </p>
+          <a href="{{ article.url }}" aria-label="{{ 'blogs.article.read_more_title' | t: title: article.title }}" class="btn btn-primary">{{ 'blogs.article.read_more' | t }}</a>     
+        </div></article>
+      </div>
     {% else %}
       {% for i in (1..section.settings.post_limit) %}
-        <li class="blog-post__item">
+      <div class="item">
+      <article class="blog-post__item">
           <h3>
             <a href="#">{{ 'homepage.onboarding.blog_title' | t }}</a>
           </h3>
@@ -91,10 +95,12 @@
           <div>{{ 'homepage.onboarding.blog_excerpt' | t }}</div>
 
           <a href="#">{{ 'blogs.article.read_more' | t }}</a>
-        </li>
+        </div>
       {% endfor %}
     {% endfor %}
-  </ul>
+  </article>
+      </div>
+</div>
 </section>
 
 {% schema %}

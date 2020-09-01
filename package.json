@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "add": "^2.0.6",
+    "animate.css": "^4.1.0",
     "bootstrap": "^4.5.2",
     "jquery": "^3.5.1",
     "or": "^0.2.0",
